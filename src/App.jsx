@@ -28,6 +28,7 @@ function App() {
     window.navigator.clipboard.writeText(pwdRef.current.value)
   }, [pwd])
 
+
   useEffect(() => {
     passwordGenerator()
   }, [length, numberAllowed, characterAllowed, passwordGenerator])
@@ -78,7 +79,12 @@ function App() {
             id='characterInput'
             onChange={() => setCharacterAllowed((prev) => !prev)} />
             <label >Characters</label>
-          </div>
+          </div>          
+        </div>
+
+        <div className='flex justify-center my-6 gap-x-6'>
+          <button className='outline-none bg-blue-700 text-white px-3 py-0.5'
+                  onClick={passwordGenerator}>Regenerate</button>
         </div>
       
     </div>
