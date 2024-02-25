@@ -11,8 +11,8 @@ This app generates password.
 
 ## Result
 
-<img src="./images/img1.png" alt="Default" width="400" height="200" /> <img src="./images/img2.png" alt="with number" width="400" height="200" />
-<img src="./images/img3.png" alt="Default" width="400" height="200" /> <img src="./images/img4.png" alt="with number" width="400" height="200" />
+<img src="./images/img1.png" alt="Default" width="400" height="200" /> <img src="./images/img2.png" alt="Length changed" width="400" height="200" />
+<img src="./images/img3.png" alt="Numbers included" width="400" height="200" /> <img src="./images/img4.png" alt="Special characters and numbers included" width="400" height="200" />
 
 
 
