@@ -6,9 +6,13 @@ function App() {
   const [numberAllowed, setNumberAllowed] = useState(false)
   const [characterAllowed, setCharacterAllowed] = useState(false)
   const [pwd, setPwd] = useState('')
+  const [initialState, setInitialState] = useState(true)
+
 
   // Ref Hook
   const pwdRef = useRef(null)
+  const numberCBref = useRef(null)
+  const characterCBref = useRef(null)
 
   const passwordGenerator = useCallback(() => {
     let characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -28,10 +32,20 @@ function App() {
     window.navigator.clipboard.writeText(pwdRef.current.value)
   }, [pwd])
 
+  const reset = useCallback(() => {
+    setCharacterAllowed(false)
+    characterCBref.current.checked = false
+    setNumberAllowed(false)
+    numberCBref.current.checked = false
+    setLength(6)
+    setInitialState(false)
+    
+  }, [setCharacterAllowed, setNumberAllowed, setLength, setInitialState])
 
   useEffect(() => {
     passwordGenerator()
-  }, [length, numberAllowed, characterAllowed, passwordGenerator])
+    
+  }, [length, numberAllowed, characterAllowed, passwordGenerator, initialState])
 
   return (
     <>
@@ -68,6 +82,7 @@ function App() {
             type="checkbox"
             defaultChecked={numberAllowed}
             id='numberInput'
+            ref={numberCBref}
             onChange={() => setNumberAllowed((prev) => !prev)} />
             <label >Numbers</label>
           </div>
@@ -77,12 +92,16 @@ function App() {
             type="checkbox"
             defaultChecked={characterAllowed}
             id='characterInput'
+            ref={characterCBref}
             onChange={() => setCharacterAllowed((prev) => !prev)} />
             <label >Characters</label>
           </div>          
         </div>
 
         <div className='flex justify-center my-6 gap-x-6'>
+          <button className='outline-none bg-blue-700 text-white px-3 py-0.5'
+                  onClick={reset}>Reset</button>
+
           <button className='outline-none bg-blue-700 text-white px-3 py-0.5'
                   onClick={passwordGenerator}>Regenerate</button>
         </div>
